@@ -63,6 +63,15 @@ values
 ("Carrie", 1),
 ("Fairytale", 1);
 
+insert into books (book_title, author_id)
+values 
+("Cujo", 1);
+
+# Deleting data:
+
+# delete from books 
+# where book_title = "Cujo";
+
 insert into availability (book_id, available)
 values
 (1, "yes"),
@@ -108,8 +117,41 @@ select available, count(available = "yes")
 from availability
 group by available;
 
-# 
 
+# Showing how many books each author has using inner join and aggregate function (count):
+
+select 
+a.author_id, 
+a.author_name, 
+a.author_surname, 
+count(b.book_id) as numberOfBooks 
+from authors a 
+inner join books b on a.author_id = b.author_id
+group by a.author_id, a.author_name, a.author_surname;
+
+
+# Searching for author who has the most books using aggregate function (count) and inner join:
+
+select 
+	a.author_id, 
+	a.author_name, 
+	a.author_surname,
+	count(b.book_id) as numberOfBooks
+from authors a
+inner join  books b on a.author_id = b.author_id
+group by a.author_id, a.author_name, a.author_surname
+order by numberOfBooks desc
+limit 1;
+
+# Searching for the average of books per author: 
+
+select
+	avg(booksPerAuthor) as averageBooksPerAuthor
+from (
+	select count(books.book_id) booksPerAuthor
+    from books
+    group by author_id
+) as bookCounts;
 
 
 # Searching for authors by surname alphabetically:
@@ -117,6 +159,7 @@ group by available;
 select * from authors
 order by author_surname;
 
+# 
 
 select * from authors;
 select * from books;
