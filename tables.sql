@@ -20,6 +20,7 @@ create table books (
 	book_id int not null auto_increment,
 	book_title varchar(100) not null,
 	author_id int not null,
+    price decimal(5, 2) default 0.0,
     primary key (book_id),
     foreign key (author_id) references authors(author_id)
 );
@@ -50,22 +51,22 @@ values
 ("dfhfvvcggf", "rrgdfllgfg", null),
 ("dgfbbdgfd", "dfgfdpppgdfg", null);
 
-insert into books (book_title, author_id)
+insert into books (book_title, author_id, price)
 values 
-("Shining", 1),
-("Misery", 1),
-("sdfdfd", 2),
-("vdfgdfgd", 3),
-("dgdfgf", 4),
-("Misery", 4),
-("Green Mile", 1),
-("werewre", 6),
-("Carrie", 1),
-("Fairytale", 1);
+("Shining", 1, 10.99),
+("Misery", 1, 11.99),
+("sdfdfd", 2, 13.99),
+("vdfgdfgd", 3, 3.99),
+("dgdfgf", 4, 6.99),
+("Misery", 4, 5.99),
+("Green Mile", 1, 6.99),
+("werewre", 6, 2.99),
+("Carrie", 1, 9.99),
+("Fairytale", 1, 8.99);
 
-insert into books (book_title, author_id)
+insert into books (book_title, author_id, price)
 values 
-("Cujo", 1);
+("Cujo", 1, 5.99);
 
 # Deleting data:
 
@@ -111,7 +112,7 @@ select count(book_id)
 from books;
 
 
-# Showing how many books are available in the library using aggregate function (count):
+# Showing how many books are currently available in the library using aggregate function (count):
 
 select available, count(available = "yes")
 from availability
@@ -169,6 +170,20 @@ set available = replace(available, "yes", "no")
 where
 book_id = 1;
 
+# Searching for books from the cheapest:
+
+select book_title, price
+from books
+order by price asc;
+
+# Searching for books cheaper than 10:
+
+select book_title, price from books where price <= 10;
+
+# Searching for the cheapest book:
+
+select * from books
+where price = (select min(price) from books);
 
 
 
