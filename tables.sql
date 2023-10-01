@@ -27,7 +27,7 @@ create table books (
 create table availability (
 	availability_id int not null auto_increment,
 	book_id int not null,
-	available varchar(10) not null, # !!!!!!!!!!!!!!!!
+	available varchar(10) not null, 
     primary key (availability_id),
     foreign key (book_id) references books(book_id)
 );
@@ -143,6 +143,7 @@ group by a.author_id, a.author_name, a.author_surname
 order by numberOfBooks desc
 limit 1;
 
+
 # Searching for the average of books per author: 
 
 select
@@ -159,7 +160,17 @@ from (
 select * from authors
 order by author_surname;
 
-# 
+
+# Changing book availability:
+
+update 
+availability
+set available = replace(available, "yes", "no")
+where
+book_id = 1;
+
+
+
 
 select * from authors;
 select * from books;
