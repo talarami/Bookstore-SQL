@@ -28,7 +28,7 @@ create table books (
 create table availability (
 	availability_id int not null auto_increment,
 	book_id int not null,
-	available varchar(10) not null, 
+	numberOfBooks int not null, 
     primary key (availability_id),
     foreign key (book_id) references books(book_id)
 );
@@ -73,15 +73,15 @@ values
 # delete from books 
 # where book_title = "Cujo";
 
-insert into availability (book_id, available)
+insert into availability (book_id, numberOfBooks)
 values
-(1, "yes"),
-(2, "yes"),
-(3, "no"),
-(4, "yes"),
-(5, "no"),
-(6, "no"),
-(7, "yes");
+(1, 12),
+(2, 2),
+(3, 3),
+(4, 11),
+(5, 30),
+(6, 20),
+(7, 5);
 
 
 # Searching for Stephen King's books using inner join:
@@ -106,20 +106,13 @@ where
 b.book_title = "Misery";
 
 
-# Finding out how many books are in a library using aggregate function (count):
+# Finding out how many books are in a library using count:
 
 select count(book_id)
 from books;
 
 
-# Showing how many books are currently available in the library using aggregate function (count):
-
-select available, count(available = "yes")
-from availability
-group by available;
-
-
-# Showing how many books each author has using inner join and aggregate function (count):
+# Showing how many books each author has using inner join and count:
 
 select 
 a.author_id, 
@@ -131,7 +124,7 @@ inner join books b on a.author_id = b.author_id
 group by a.author_id, a.author_name, a.author_surname;
 
 
-# Searching for author who has the most books using aggregate function (count) and inner join:
+# Searching for author who has the most books using count and inner join:
 
 select 
 	a.author_id, 
@@ -145,7 +138,7 @@ order by numberOfBooks desc
 limit 1;
 
 
-# Searching for the average of books per author: 
+# Searching for the average of books per author using avg: 
 
 select
 	avg(booksPerAuthor) as averageBooksPerAuthor
@@ -180,7 +173,7 @@ order by price asc;
 
 select book_title, price from books where price <= 10;
 
-# Searching for the cheapest book:
+# Searching for the cheapest book using min:
 
 select * from books
 where price = (select min(price) from books);
@@ -190,19 +183,6 @@ where price = (select min(price) from books);
 select * from authors;
 select * from books;
 select * from availability;
-
-# Stored function:
-
-# funkcja ktora sumuje ceny wszystkich ksiazek
-# funkcja ktora sumuje ceny ksiazek poszczegolnych autorow
-# funkcja ktora zwraca imie i nazwisko autora
-
-
-# funkcja ktora zwraca tytuly dostepnych ksiazek
-
-# kolumna z iloscia dostepnych poszczegolnych ksiazek
-
-# funkcja ktora porzadkuje ksiazki od najstarszych do najnowszych (trzeba stworzyc kolumne z rokiem wydania ksiazki)
 
 
 
