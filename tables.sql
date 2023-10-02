@@ -186,8 +186,7 @@ select * from availability;
 
 
 
-# zmienic table availability na ilosc dostepnych sztuk poszczegolnych ksiazek zamiast yes no i w funkcji wywolac 
-# np sumowanie wszystkich dostepnych ksiazek w zasobach ksiegarni albo cena ksiazki * ilosc zeby sprawdzic wartosc
+# funkcja: sumowanie wszystkich dostepnych ksiazek w zasobach ksiegarni albo cena ksiazki * ilosc zeby sprawdzic wartosc
 # wszystkich ksiazek danego autora
 
 
