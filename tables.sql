@@ -191,4 +191,28 @@ select * from authors;
 select * from books;
 select * from availability;
 
+# Stored function:
+
+# funkcja ktora sumuje ceny wszystkich ksiazek
+# funkcja ktora sumuje ceny ksiazek poszczegolnych autorow
+# funkcja ktora zwraca imie i nazwisko autora
+
+
+# funkcja ktora zwraca tytuly dostepnych ksiazek
+
+# kolumna z iloscia dostepnych poszczegolnych ksiazek
+
+# funkcja ktora porzadkuje ksiazki od najstarszych do najnowszych (trzeba stworzyc kolumne z rokiem wydania ksiazki)
+
+
+
+# zmienic table availability na ilosc dostepnych sztuk poszczegolnych ksiazek zamiast yes no i w funkcji wywolac 
+# np sumowanie wszystkich dostepnych ksiazek w zasobach ksiegarni albo cena ksiazki * ilosc zeby sprawdzic wartosc
+# wszystkich ksiazek danego autora
+
+
+
+
+
+
 
